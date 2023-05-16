@@ -4,16 +4,17 @@ import React from 'react';
 import PostListItem from '../post-list-item';
 import './post-list.css'
 
-const PostList = ({posts}) => {
-
-    
+const PostList = ({posts, onDelete}) => {
+ 
     const elements = posts.map( (item) => {
         //Простой способ проверки на объект + содержится ли в нем информация
         if ( typeof item === 'object' && isEmpty(item) ){ 
              const {id, ...itemProps} = item;
             return (
                 <li key = {id} className='list-group-item'>
-                    <PostListItem {...itemProps}/>
+                    <PostListItem
+                     {...itemProps}
+                    onDelete={() => onDelete(id)}/>
                 </li>
             )
         }
